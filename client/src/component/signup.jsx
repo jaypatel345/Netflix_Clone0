@@ -4,6 +4,7 @@ import netflix_home from "../assets/netflix_Home.jpg";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
+import api from "../utils/api";
 
 function Login() {
   const [user, setUser] = useState({
@@ -12,18 +13,22 @@ function Login() {
     username: "",
     joined: "",
   });
+    const [loading, setLoading] = useState(false);
+  
   const navigate = useNavigate();
   const onSignup = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
-      const res = await axios.post("/api/auth/register", user);
+      const res = await api.post("/auth/register", user);
       console.log(res.data);
       toast.success("Successfully SignUp!");
-      setTimeout(() => navigate("/login"), 3000);
+      setTimeout(() => navigate("/login"), 1000);
+       setLoading(false);
     } catch (error) {
       console.log("Signup failed", error.message);
-      toast.error("SignUp failed:")
-      throw new Error("Something is wrong in login API");
+      toast.error("SignUp failed:");
+      throw new Error("Something is wrong in signup API");
     }
   };
   return (
@@ -83,7 +88,7 @@ function Login() {
                 type="submit"
                 className="bg-red-600 hover:bg-red-700 transition-colors p-4 rounded font-semibold"
               >
-                Sign In
+                {loading ? "Signing Up..." : "Sign Up"}
               </button>
 
               <div className="flex justify-between items-center text-sm text-neutral-400">
