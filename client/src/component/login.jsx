@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import netflix_home from "../assets/netflix_Home.jpg";
-import axios from "axios";
+import api from "../utils/api";
 import { useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 function Login() {
@@ -15,7 +15,7 @@ function Login() {
     e.preventDefault(); // stop full page reload immediately
     setLoading(true);
     try {
-      const res = await axios.post("/api/auth/login", user);
+      const res = await api.post("/auth/login", user);
       console.log("Login Response:", res.data);
       toast.success("Successfully Signed In!");
 
