@@ -31,6 +31,7 @@ app.use("/api/lists", listRoute);
 app.use("/api/reviews",reviewRoute);
 
 // Start server
-app.listen(8800, () => {
-  console.log("Backend is running!");
+const PORT = process.env.PORT || 8800;
+app.listen(PORT, () => {
+  console.log(`Backend is running on port ${PORT}!`);
 });
