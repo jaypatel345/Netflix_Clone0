@@ -39,13 +39,18 @@ function BrowseNav({ type }) {
 
   const handleWheel = (event) => {
     event.preventDefault();
-    cardsRef.current.scrollLeft += event.deltaY;
+    if (cardsRef.current) {
+      cardsRef.current.scrollLeft += event.deltaY;
+    }
   };
   useEffect(() => {
     if (!homeMovies || homeMovies.length === 0) {
       prefetchMovies();
     }
-    cardsRef.current.addEventListener("wheel", handleWheel);
+    const el = cardsRef.current;
+    if (!el) return;
+    el.addEventListener("wheel", handleWheel, { passive: false });
+    return () => el.removeEventListener("wheel", handleWheel);
   }, []);
 
   const navRef = useRef();
@@ -277,12 +282,12 @@ function BrowseNav({ type }) {
         </div>
       </div>
       {/* Thumbnail Row */}
-      <div className="absolute bottom-0.5 left-5 text-white w-full rounded-xl mb-0 px-5 py-3 overflow-x-auto scrollbar-hide">
+      <div className="absolute bottom-0.5 left-5 text-white w-full rounded-xl mb-0 px-5 py-3 overflow-x-scroll scrollbar-hide">
         <span className="font-semibold text-[17px] block mb-4">
           {type ? type : "Blockbuster movies"}
         </span>
 
-        <div className="flex space-x-2 cursor-pointer" ref={cardsRef}>
+        <div className="flex space-x-2 cursor-pointer flex-nowrap overflow-x-scroll" ref={cardsRef}>
           {homeMovies &&
           homeMovies.filter((movie) => movie.Poster && movie.Title).length >
             0 ? (
