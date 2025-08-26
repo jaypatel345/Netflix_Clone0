@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import Home from "../pages/Home";
-import Register from "../pages/register";
+import Register from "../pages/Register";
 import LoginPage from "../pages/login";
 import Signup from "../pages/signup";
 import Player from "../pages/player";
