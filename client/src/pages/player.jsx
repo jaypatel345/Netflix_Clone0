@@ -1,5 +1,5 @@
 import React from 'react'
-import NetflixPlayer from '../component/netflixplayer'
+import NetflixPlayer from '../component/NetflixPlayer'
 
 function Player() {
     return (
