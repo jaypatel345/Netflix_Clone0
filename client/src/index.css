@@ -1,0 +1,58 @@
+@import "tailwindcss";
+
+.text-stroke-white {
+    -webkit-text-stroke: 2px white;
+    color:black
+}
+
+.hide-scrollbar::-webkit-scrollbar{
+    display: none;
+}
+/* === List & ListItem Component Styles === */
+
+body {
+  background-color: #111;
+  color: white;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* Hide scrollbar for Chrome, Safari, and Edge */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for Firefox */
+.scrollbar-hide {
+  scrollbar-width: none;
+}
+
+.nav-dark{
+  background: #141414;
+}
+.video-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: -1;
+}
+
+.video-background iframe {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 177.78vh; /* For wide-scale cover */
+  height: 100vh;
+  transform: translate(-50%, -50%);
+}
+
+.overlay {
+  position: relative;
+  z-index: 0;
+  /* Add your content styles (texts, buttons, etc.) */
+}
